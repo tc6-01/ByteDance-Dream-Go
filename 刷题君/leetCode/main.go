@@ -43,16 +43,33 @@ func lengthOfLongestSubstring(s string) int {
 	}
 	return maxLen
 }
-func max(x, y int) int {
-	if x > y {
-		return x
+func getMidOfArray(num1, num2 []int) int {
+
+	return 0
+}
+func maxArea(height []int) int {
+	left, right := 0, len(height)-1
+	maxArea, size := 0, 1
+	for left < right {
+		if maxArea < size*(right-left+1) {
+			maxArea = size * (right - left + 1)
+		}
+		if height[left] < height[right] {
+			size = height[left]
+			left++
+		} else {
+			size = height[right]
+			right--
+		}
 	}
-	return y
+	return maxArea
 }
 func main() {
-	var s string
-	fmt.Println("请输入一个字符串")
-	fmt.Scanf("%s", &s)
-	m := lengthOfLongestSubstring(s)
-	fmt.Println("该字符串的最大不重复长度为:", m)
+	//var s string
+	//fmt.Println("请输入一个字符串")
+	//fmt.Scanf("%s", &s)
+	//m := lengthOfLongestSubstring(s)
+	//fmt.Println("该字符串的最大不重复长度为:", m)
+	s := []int{1, 3, 5, 7, 9, 2, 3, 4}
+	fmt.Println(maxArea(s))
 }
