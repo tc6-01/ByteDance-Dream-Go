@@ -80,3 +80,28 @@ func min(x,y int)int{
 I:=&ListNode{0,head}
 ```
 
+## 最长盛水量（双指针）
+
+​	使用双向指针进行压缩，分别计算每次两个指针区间内的盛水量，每次将两个指针之间较小的数进行移动，左指针右移，右指针左移，重复为边界,最后计算最大值。
+
+```go
+func maxArea(height []int) int {
+	left, right := 0, len(height)-1
+	maxArea := 0
+	for left < right {
+		ans := 0
+		if height[left] < height[right] {
+			ans = height[left] * (right - left)
+			left++
+		} else {
+			ans = height[right] * (right - left)
+			right--
+		}
+		if maxArea < ans {
+			maxArea = ans
+		}
+	}
+	return maxArea
+}
+```
+

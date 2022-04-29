@@ -49,27 +49,29 @@ func getMidOfArray(num1, num2 []int) int {
 }
 func maxArea(height []int) int {
 	left, right := 0, len(height)-1
-	maxArea, size := 0, 1
+	maxArea := 0
 	for left < right {
-		if maxArea < size*(right-left+1) {
-			maxArea = size * (right - left + 1)
-		}
+		ans := 0
 		if height[left] < height[right] {
-			size = height[left]
+			ans = height[left] * (right - left)
 			left++
 		} else {
-			size = height[right]
+			ans = height[right] * (right - left)
 			right--
+		}
+		if maxArea < ans {
+			maxArea = ans
 		}
 	}
 	return maxArea
 }
+
 func main() {
 	//var s string
 	//fmt.Println("请输入一个字符串")
 	//fmt.Scanf("%s", &s)
 	//m := lengthOfLongestSubstring(s)
 	//fmt.Println("该字符串的最大不重复长度为:", m)
-	s := []int{1, 3, 5, 7, 9, 2, 3, 4}
-	fmt.Println(maxArea(s))
+	s := []int{-1, 0, 1, 2, -1, -4}
+	fmt.Println(threeSum(s))
 }
